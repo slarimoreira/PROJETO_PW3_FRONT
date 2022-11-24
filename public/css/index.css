@@ -1,0 +1,17 @@
+.group{
+    padding: 30px;
+}
+
+h2{
+    color: #507ada;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.btn{
+    display: flex;
+    align-items: flex-start;
+    width: 150px;
+
+    margin-top: 50px;
+}

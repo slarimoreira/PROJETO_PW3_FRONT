@@ -1,0 +1,39 @@
+<%- include('../partials/header.ejs')  %>
+<link rel="stylesheet" href="/css/index.css">
+
+<body>
+    <%- include('../partials/navbar.ejs')  %>
+
+    <h2 >Preencha todos os campos abaixo para adicionar uma nova anotação!</h2>
+
+    <form class="group" action="http://localhost:6000/inserirAnotacao" method="post">
+
+        <div class="input-group mb-3">
+
+            <input type="text" 
+            class="form-control" 
+            placeholder="Título da sua anotação" 
+            aria-label="Username" 
+            aria-describedby="basic-addon1"
+            name="titulo_nota">
+
+        </div>
+
+        <div class="input-group">
+
+            <textarea 
+            class="form-control" 
+            aria-label="With textarea" 
+            placeholder="O que gostaria de anotar?"
+            style="height: 200px;"
+            name="anotacao">
+
+            </textarea>
+        </div>
+
+        <input type="date" hidden name="date">
+
+        <button class="btn btn-primary">Enviar</button>
+    </form>
+
+</body>
