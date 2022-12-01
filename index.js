@@ -13,16 +13,16 @@ app.get('/anotacao', (req, res)=>{
     res.render('anotacao/index');
 });
 
-app.get('/home', (req, res)=>{
+app.get('/listagem', (req, res)=>{
     
-    const urlListagemCategoria = 'http://localhost:6000/listarAnotacao';
+    const urlListagemAnotacao = 'http://localhost:3000/listarAnotacao';
 
-    axios.get(urlListagemCategoria)
+    axios.get(urlListagemAnotacao)
         .then(
             (response)=>{
 
-                let categorias = response.data;
-                res.render('categoria/listagemCategoria', {categorias});
+                let anotacao = response.data;
+                res.render('anotacao/listagem', {anotacao});
 
         }); 
     });

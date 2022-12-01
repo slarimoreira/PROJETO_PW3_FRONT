@@ -1,0 +1,32 @@
+<%- include('../partials/header.ejs')  %>
+<link rel="stylesheet" href="/css/listagem.css">
+<link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+<body>
+    <%- include('../partials/navbar.ejs')  %>
+
+    <h2>Todas as suas anotações!</h2>
+
+    <div class="container">
+        <%  anotacao.forEach(anotacao => { %>
+            <div class="card border-light mb-3" style="max-width: 18rem;">
+                <div class="card-header"
+                    style="display: flex; justify-content: space-between;"
+                >
+                <%= anotacao.date %>
+                
+                    <div>
+                        <i class='bx bx-trash'></i>
+                        <i class='bx bx-revision'></i>
+                    </div>
+                    
+                </div>
+                <div class="card-body">
+                <h5 class="card-title"><%= anotacao.titulo_nota %></h5>
+                <p class="card-text"><%= anotacao.anotacao %></p>
+                </div>
+            </div>
+        <% }) %>
+    </div>  
+    
+
+</body>

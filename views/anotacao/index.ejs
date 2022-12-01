@@ -6,7 +6,7 @@
 
     <h2 >Preencha todos os campos abaixo para adicionar uma nova anotação!</h2>
 
-    <form class="group" action="http://localhost:6000/inserirAnotacao" method="post">
+    <form class="group" action="http://localhost:3000/inserirAnotacao" method="post">
 
         <div class="input-group mb-3">
 
@@ -26,14 +26,12 @@
             aria-label="With textarea" 
             placeholder="O que gostaria de anotar?"
             style="height: 200px;"
-            name="anotacao">
-
-            </textarea>
+            name="anotacao"></textarea>
         </div>
 
-        <input type="date" hidden name="date">
+        <input type="date" name="date">
 
-        <button class="btn btn-primary">Enviar</button>
+        <button type="submit" class="btn btn-primary">Enviar</button>
     </form>
 
 </body>

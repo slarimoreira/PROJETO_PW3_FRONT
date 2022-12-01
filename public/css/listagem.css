@@ -1,0 +1,15 @@
+h2{
+    color: #507ada;
+    padding-top: 20px;
+    text-align: center;
+}
+
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    row-gap: 20px;
+
+    margin-top: 5rem;
+}
