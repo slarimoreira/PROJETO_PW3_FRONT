@@ -6,6 +6,11 @@
 
     <h2>Todas as suas anotações!</h2>
 
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin-right: 50px;">
+        <button class="btn btn-primary me-md-2" data-bs-toggle="modal" data-bs-target="#exampleModal" type="submit">Adicione uma nova anotação</button>
+    </div>
+
     <div class="container">
         <%  anotacao.forEach(anotacao => { %>
             <div class="card border-light mb-3" style="max-width: 18rem;">
@@ -15,18 +20,80 @@
                 <%= anotacao.date %>
                 
                     <div>
-                        <i class='bx bx-trash'></i>
-                        <i class='bx bx-revision'></i>
+                        <a id="trash" href="/deletarListagem/<%= anotacao.id %>"><i class='bx bx-trash'></i></a>
+                        <a id="update"  href="/listagem/<%= anotacao.id %>"><i class='bx bx-revision'></i></a>
                     </div>
                     
                 </div>
                 <div class="card-body">
-                <h5 class="card-title"><%= anotacao.titulo_nota %></h5>
-                <p class="card-text"><%= anotacao.anotacao %></p>
+                    <h5 class="card-title"><%= anotacao.titulo_nota %></h5>
+                    <p class="card-text"><%= anotacao.anotacao %></p>
                 </div>
             </div>
         <% }) %>
     </div>  
+
     
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+            <form action="http://localhost:3000/inserirAnotacao" method="post">
+
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Titulo:</label>
+                    <input type="text" class="form-control" name="titulo_nota" id="recipient-name">
+                </div>
+                <div class="mb-3">
+                    <label for="message-text" class="col-form-label">Anotação:</label>
+                    <textarea class="form-control" id="message-text" style="height: 300px;" name="anotacao"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="message-text" class="col-form-label">Data:</label>
+                    <input type="date" name="date">
+                </div>
+
+                <div class="modal-footer">
+                    <button id="insert" type="submit" class="btn btn-primary">Inserir</button>
+                </div>
+
+            </form>
+
+        </div>
+        
+    </div>
+    </div>
+</div>
 
 </body>
+
+<script src="/js/bootstrap.min.js"></script>
+<script>
+    const exampleModal = document.getElementById('exampleModal')
+    exampleModal.addEventListener('show.bs.modal', event => {
+    // Button that triggered the modal
+    const button = event.relatedTarget
+    // Extract info from data-bs-* attributes
+    const recipient = button.getAttribute('data-bs-whatever')
+    // If necessary, you could initiate an AJAX request here
+    // and then do the updating in a callback.
+    //
+    // Update the modal's content.
+    const modalTitle = exampleModal.querySelector('.modal-title')
+    const modalBodyInput = exampleModal.querySelector('.modal-body input')
+
+
+    let {id} = req.params;
+    modalTitle.textContent = `${id}`
+    modalBodyInput.value = recipient
+})
+
+
+
+</script>
