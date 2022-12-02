@@ -5,5 +5,10 @@
     box-sizing: border-box;
 
     font-family: 'Poppins', sans-serif;
+
+    
 }
 
+body{
+    background-color: rgb(237, 243, 249);
+}
