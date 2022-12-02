@@ -46,7 +46,19 @@ app.get('/listagem', (req, res)=>{
         )
     });
 
-    app.post('/alterarAnotacao', (req, res)=>{
+    app.post('/alterouAnotacao', (req, res)=>{
+        
+        const urlListagemAnotacao = 'http://localhost:3000/inserirAnotacao';
+
+        axios.post(urlListagemAnotacao, req.body)
+        .then(
+            res.redirect('http://localhost:8070/listagem')
+        )
+
+    });
+
+
+    app.post('/inserirAnotacao', (req, res)=>{
         
         const urlListagemAnotacao = 'http://localhost:3000/alterarAnotacao';
 
