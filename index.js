@@ -27,30 +27,6 @@ app.get('/listagem', (req, res)=>{
         }); 
 });
 
-
-    // app.get('/listagem', (req, res)=>{
-        
-    //     const urlListagemAnotacao = 'http://localhost:3000/listarAnotacao';
-
-    //             axios.get(urlListagemAnotacao)
-    //             .then((response)=>{
-
-    //                 let anotacao = response.data;
-    //                 res.render('anotacao/listagem', {anotacao});
-
-    //                 const inserirAnotacao = 'http://localhost:3000/inserirAnotacao';
-
-    //                 axios.post(inserirAnotacao)
-    //                 .then(()=>{
-
-    //                      console.log('FUncionou')       
-
-    //                 }); 
-    //             });
-
-        
-    // });
-
     app.get('/alterar/:id', (req, res)=>{
 
         let {id} = req.params;
@@ -76,7 +52,7 @@ app.get('/listagem', (req, res)=>{
 
         axios.put(urlListagemAnotacao, req.body)
         .then(
-            res.send('ALTERADO!')
+            res.redirect('http://localhost:8070/listagem')
         )
 
     });
@@ -90,16 +66,7 @@ app.get('/listagem', (req, res)=>{
         axios.delete(deleteAnotacao)
         .then(
             (response)=>{   
-
-                const urlListagemAnotacao = 'http://localhost:3000/listarAnotacao';
-
-                axios.get(urlListagemAnotacao)
-                    .then((response)=>{
-
-                        let anotacao = response.data;
-                        res.render('anotacao/listagem', {anotacao});
-
-                    });
+                res.redirect('http://localhost:8070/listagem')
 
             }
         )
