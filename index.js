@@ -46,11 +46,11 @@ app.get('/listagem', (req, res)=>{
         )
     });
 
-    app.post('/alterouAnotacao', (req, res)=>{
+    app.post('/alterarAnotacao', (req, res)=>{
         
-        const urlListagemAnotacao = 'http://localhost:3000/inserirAnotacao';
+        const urlListagemAnotacao = 'http://localhost:3000/alterarAnotacao';
 
-        axios.post(urlListagemAnotacao, req.body)
+        axios.put(urlListagemAnotacao, req.body)
         .then(
             res.redirect('http://localhost:8070/listagem')
         )
@@ -59,10 +59,11 @@ app.get('/listagem', (req, res)=>{
 
 
     app.post('/inserirAnotacao', (req, res)=>{
+        const urlListagemAnotacao = 'http://localhost:3000/inserirAnotacao';
         
-        const urlListagemAnotacao = 'http://localhost:3000/alterarAnotacao';
+        
 
-        axios.put(urlListagemAnotacao, req.body)
+        axios.post(urlListagemAnotacao, req.body)
         .then(
             res.redirect('http://localhost:8070/listagem')
         )
