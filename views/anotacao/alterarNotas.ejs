@@ -1,0 +1,44 @@
+<%- include('../partials/header.ejs')  %>
+<link rel="stylesheet" href="/css/index.css">
+
+<body>
+    <%- include('../partials/navbar.ejs')  %>
+
+    <h2 >Preencha todos os campos abaixo para alterar a anotação!</h2>
+
+    <form class="group" action="http://localhost:8070/alterarAnotacao" method="post">
+
+        <input name="id" type="hidden" value="<%= anotacao.id %>">
+
+        <div class="input-group mb-3">
+
+            <input type="text" 
+            class="form-control" 
+            placeholder="Título da sua anotação" 
+            aria-label="Username" 
+            aria-describedby="basic-addon1"
+            name="titulo_nota"
+            value="<%= anotacao.titulo_nota %>">
+
+        </div>
+
+        <div class="input-group">
+
+            <textarea 
+            class="form-control" 
+            aria-label="With textarea" 
+            placeholder="O que gostaria de anotar?" 
+            style="height: 200px;"
+            name="anotacao"
+            ><%= anotacao.anotacao %></textarea>
+        </div>
+
+        <div id="put" class="input-group">
+            <input value="<%= anotacao.date %>" class="date" type="date" name="date">
+        </div>
+
+
+        <button class="btn btn-primary">Editar</button>
+    </form>
+
+</body>

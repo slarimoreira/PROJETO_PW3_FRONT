@@ -13,50 +13,45 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-app.post('listagem', (req, res) =>{
+app.get('/listagem', (req, res)=>{
+    
+    const urlListagemAnotacao = 'http://localhost:3000/listarAnotacao';
 
+    axios.get(urlListagemAnotacao)
+        .then(
+            (response)=>{
+
+                let anotacao = response.data;
+                res.render('anotacao/listagem', {anotacao});
+                
+        }); 
 });
 
 
-// app.get('/listagem', (req, res)=>{
-    
-//     const urlListagemAnotacao = 'http://localhost:3000/listarAnotacao';
-
-//     axios.get(urlListagemAnotacao)
-//         .then(
-//             (response)=>{
-
-//                 let anotacao = response.data;
-//                 res.render('anotacao/listagem', {anotacao});
-
-//         }); 
-// });
-
-
-    app.get('/listagem', (req, res)=>{
+    // app.get('/listagem', (req, res)=>{
         
-        const urlListagemAnotacao = 'http://localhost:3000/listarAnotacao';
+    //     const urlListagemAnotacao = 'http://localhost:3000/listarAnotacao';
 
-                axios.get(urlListagemAnotacao)
-                .then((response)=>{
+    //             axios.get(urlListagemAnotacao)
+    //             .then((response)=>{
 
-                    let anotacao = response.data;
-                    res.render('anotacao/listagem', {anotacao});
+    //                 let anotacao = response.data;
+    //                 res.render('anotacao/listagem', {anotacao});
 
-                    const inserirAnotacao = 'http://localhost:3000/inserirAnotacao';
+    //                 const inserirAnotacao = 'http://localhost:3000/inserirAnotacao';
 
-                    axios.post(inserirAnotacao)
-                    .then(()=>{
+    //                 axios.post(inserirAnotacao)
+    //                 .then(()=>{
 
-                         console.log('FUncionou')       
+    //                      console.log('FUncionou')       
 
-                    }); 
-                });
+    //                 }); 
+    //             });
 
         
-    });
+    // });
 
-    app.get('/listagem/:id', (req, res)=>{
+    app.get('/alterar/:id', (req, res)=>{
 
         let {id} = req.params;
 
@@ -69,12 +64,22 @@ app.post('listagem', (req, res) =>{
             (response)=>{   
 
                 let anotacao = response.data;
-                res.render('anotacao/listagem', {anotacao});
+                res.render('anotacao/alterarNotas', {anotacao});
 
             }
         )
     });
 
+    app.post('/alterarAnotacao', (req, res)=>{
+        
+        const urlListagemAnotacao = 'http://localhost:3000/alterarAnotacao';
+
+        axios.put(urlListagemAnotacao, req.body)
+        .then(
+            res.send('ALTERADO!')
+        )
+
+    });
 
     app.get('/deletarListagem/:id', (req, res)=>{
 
@@ -99,19 +104,6 @@ app.post('listagem', (req, res) =>{
             }
         )
     });
-
-
-    // app.post('/alterarCategoria', (req, res)=>{
-
-    //     const urlListagemAnotacao = 'http://localhost:3000/alterarCategoria';
-    //     console.log(req.body);
-
-    //     axios.put(urlListagemAnotacao, req.body)
-    //     .then(
-    //         res.send('ALTERADO!')
-    //     )
-
-    // });
 
 app.listen(8070, ()=>{
     console.log('SERVIDOR RODANDO EM: http://localhost:8070');
